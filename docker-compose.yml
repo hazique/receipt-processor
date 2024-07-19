@@ -1,0 +1,17 @@
+
+services:
+  flask-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: prod
+    ports:
+      - 8000:5000
+    volumes:
+      - .:/flask-app
+    networks:
+      - flask-app
+
+networks:
+  flask-app:
+    name: flask-app
