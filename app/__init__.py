@@ -44,7 +44,7 @@ def create_app():
         if not is_db_present(app):
             
             from app.schema.receipt_points import ReceiptPointsModel
-            
+
             db.create_all()
 
 
@@ -88,5 +88,5 @@ def configure_logging(app):
     # Remove the default logger configured by Flask
     app.logger.removeHandler(default_handler)
 
-    app.logger.info('Starting the Flask User Management App...')
+    app.logger.info('Starting the Receipt Processor app...')
 
