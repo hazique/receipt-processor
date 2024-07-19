@@ -1,0 +1,10 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "receipt-points",
+            "database": "${workspaceFolder:receipt-processor}/instance/app.db"
+        }
+    ]
+}
