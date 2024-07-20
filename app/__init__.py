@@ -62,9 +62,9 @@ def register_routes(api):
     # Since the application instance is now created, register each Resource
     # with the Flask application instance (app)
     from app.resources.receipt import ReceiptPointsResource
-    from app.resources.receipt import ReceiptProcessResouce
-    api.add_resource(ReceiptPointsResource, '/receipts/<int:id>/points')
-    api.add_resource(ReceiptProcessResouce, '/receipts/process')
+    from app.resources.receipt import ReceiptProcessResource
+    api.add_resource(ReceiptPointsResource, '/receipts/<id>/points')
+    api.add_resource(ReceiptProcessResource, '/receipts/process')
 
 def is_db_present(app):
     # Check if the database file exists

@@ -1,15 +1,13 @@
-from sqlalchemy import event
 from app import db
+from app.exceptions import InvalidReceiptIdException
 
 class ReceiptPointsModel(db.Model):
     """
     Class that represents a ReceiptPoints.
 
     The following attributes of a user are stored in this table:
-        * receipt_id - id of receipt. Mapped to receipt object in the NoSQL store
+        * receipt_id - id of receipt
         * receipt_points - total points calculated for the receipt
-
-    REMEMBER: Never store the plaintext password in a database!
     """
 
     __tablename__ = 'receipt_points'
@@ -40,10 +38,7 @@ class ReceiptPointsModel(db.Model):
 
     @classmethod
     def find_by_receipt_id(cls, receipt_id):
-        return cls.query.filter_by(receipt_id=receipt_id).first()
-
-# @event.listens_for(SubscriptionModel.__table__, 'after_create')
-# def create_subscriptions(*args, **kwargs):
-#     db.session.add(SubscriptionModel(user_id=1, industry='Technology', source='TechCrunch', subcategory='Latest'))
-#     db.session.add(SubscriptionModel(user_id=2, industry='Technology', source='TechCrunch', subcategory='Latest'))  
-#     db.session.commit()
+        data = cls.query.filter_by(receipt_id=receipt_id).first()
+        if not data:
+            raise InvalidReceiptIdException
+        return data

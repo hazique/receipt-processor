@@ -1,6 +1,7 @@
+import dataclasses
 from dataclasses import dataclass
 from typing import List, Dict
-
+from app.exceptions import InvalidReceiptException
 @dataclass
 class Item:
     shortDescription: str
@@ -24,6 +25,7 @@ class Receipt:
 
     def __init__(self, **data):
         self.points = 0
+
         for key, val in data.items():
             if key == 'retailer':
                 self.retailer = val.strip()
@@ -40,4 +42,12 @@ class Receipt:
             elif key == 'items':
                 self.items = list(map(lambda x: Item(**x), val))
 
+            else:
+                raise InvalidReceiptException
+            
+        fields = dataclasses.fields(self)
+        for field in fields:
+            if field.name != 'points' and field.name not in data:
+                print(field.name)
+                raise InvalidReceiptException
             
