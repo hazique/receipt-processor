@@ -1,6 +1,6 @@
 import dataclasses
 from dataclasses import dataclass
-from typing import List, Dict
+from typing import List
 from app.exceptions import InvalidReceiptException
 @dataclass
 class Item:
@@ -14,6 +14,9 @@ class Item:
             
             elif key == 'price':
                 self.price = float(val.strip())
+
+            else:
+                raise InvalidReceiptException
 @dataclass
 class Receipt:
     retailer: str
@@ -48,6 +51,5 @@ class Receipt:
         fields = dataclasses.fields(self)
         for field in fields:
             if field.name != 'points' and field.name not in data:
-                print(field.name)
                 raise InvalidReceiptException
             

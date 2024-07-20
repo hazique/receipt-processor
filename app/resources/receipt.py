@@ -1,4 +1,5 @@
 from flask import request
+
 from flask_restful import Resource
 from app.models import Receipt
 from app.services.points_calculator import calculate_points
@@ -25,6 +26,7 @@ class ReceiptProcessResource(Resource):
             receipt = Receipt(**data)
         except InvalidReceiptException as e:
             return e.serialize()
+        
         receipt_id = generate_unique_id(receipt)
         
         try:

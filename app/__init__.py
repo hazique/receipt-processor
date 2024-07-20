@@ -11,7 +11,6 @@ import os
 
 from flask_sqlalchemy import SQLAlchemy
 
-
 # -------------
 # Configuration
 # -------------
@@ -51,8 +50,6 @@ def create_app():
     api = Api()
     register_routes(api)
     api.init_app(app)
-
-
     return app
 
 # ----------------
