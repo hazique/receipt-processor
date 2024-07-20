@@ -73,7 +73,7 @@ def configure_logging(app):
     if not is_db_present(app):
         os.makedirs(app.instance_path, exist_ok=True)
     
-    file_handler = RotatingFileHandler('instance/flask-user-management.log',
+    file_handler = RotatingFileHandler('instance/flask-receipt-processor.log',
                                     maxBytes=16384,
                                     backupCount=20,
                                     mode='a')

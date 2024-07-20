@@ -1,6 +1,7 @@
 aniso8601==9.0.1
 blinker==1.8.2
 click==8.1.7
+coverage==7.6.0
 exceptiongroup==1.2.2
 flask==3.0.3
 Flask-RESTful==0.3.10
