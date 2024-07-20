@@ -1,14 +1,43 @@
 from dataclasses import dataclass
+from typing import List, Dict
 
 @dataclass
 class Item:
-    short_description: str
+    shortDescription: str
     price: float
 
+    def __init__(self, **data):
+        for key, val in data.items():
+            if key == 'shortDescription':
+                self.shortDescription = val.strip()
+            
+            elif key == 'price':
+                self.price = float(val.strip())
 @dataclass
 class Receipt:
     retailer: str
     purchaseDate: str
     purchaseTime: str
-    items: int
+    items: List[Item]
     total: float
+    points: int
+
+    def __init__(self, **data):
+        self.points = 0
+        for key, val in data.items():
+            if key == 'retailer':
+                self.retailer = val.strip()
+
+            elif key == 'purchaseDate':
+                self.purchaseDate = val.strip()
+
+            elif key == 'purchaseTime':
+                self.purchaseTime = val.strip()
+
+            elif key == 'total':
+                self.total = float(val.strip())
+
+            elif key == 'items':
+                self.items = list(map(lambda x: Item(**x), val))
+
+            

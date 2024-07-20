@@ -14,8 +14,8 @@ class ReceiptPointsModel(db.Model):
 
     __tablename__ = 'receipt_points'
 
-    receipt_id = db.Column(db.Integer, primary_key=True)
-    receipt_points = db.Column(db.Float)
+    receipt_id = db.Column(db.String, primary_key=True)
+    receipt_points = db.Column(db.Integer)
 
     def __init__(self, receipt_id, receipt_points):
         self.receipt_id = receipt_id
