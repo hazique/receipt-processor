@@ -9,7 +9,14 @@ from app.exceptions import InvalidReceiptException, InvalidReceiptIdException
 
 class ReceiptPointsResource(Resource):
     def get(self, id):
-        # Logic to get points for a receipt by ID
+        """
+        Get points for a receipt by ID
+        Args:
+            id (str): 
+
+        Returns:
+            response (Response): HTTP Response
+        """
         try:
             data: ReceiptPointsModel = ReceiptPointsModel.find_by_receipt_id(id)
         except InvalidReceiptIdException as e:
@@ -20,7 +27,11 @@ class ReceiptPointsResource(Resource):
 
 class ReceiptProcessResource(Resource):
     def post(self):
-        # Logic to process a receipt
+        """
+        Process the receipt received as JSON.
+        Returns:
+            response (Response): HTTP Response
+        """
         data = request.get_json()
         try:
             receipt = Receipt(**data)

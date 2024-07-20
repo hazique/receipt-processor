@@ -4,6 +4,12 @@ from typing import List
 from app.exceptions import InvalidReceiptException
 @dataclass
 class Item:
+    """
+    Dataclass for respresenting an Item.
+    Raises:
+        InvalidReceiptException: When any of the item object attrbutes
+        are incorrect.
+    """
     shortDescription: str
     price: float
 
@@ -19,6 +25,12 @@ class Item:
                 raise InvalidReceiptException
 @dataclass
 class Receipt:
+    """
+    Dataclass for respresenting an Item.
+    Raises:
+        InvalidReceiptException: When any of the receipt object attrbutes
+        are incorrect.
+    """
     retailer: str
     purchaseDate: str
     purchaseTime: str
